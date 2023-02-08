@@ -5,8 +5,17 @@ public class SnakeLadder {
     static  int dice = 0;
     static Random rand = new Random();
     static int getRandomvalue() {
-        Random ch = new Random();
 
+        System.out.println("Single player at start position "+ startgame);
+        while (startgame <= 100){
+            dice = rollDice();
+            startgame = getRandomoption(dice, startgame);
+        }
+        System.out.println("Win the game position is : "+ startgame);
+        return dice;
+    }
+    public static int rollDice(){
+        Random ch = new Random();
         int randomvalue = ch.nextInt(6) +1;
         System.out.println("player roll the die");
         randomvalue = randomvalue + 1;
@@ -35,12 +44,10 @@ public class SnakeLadder {
         return randomoption;
     }
     public static void main(String[] args) {
-        System.out.println("Here start the snake Ladder Program");
+        System.out.println("Here to start snake and ladder program");
 
         dice = getRandomvalue();
-        getRandomoption( dice , startgame);
-
-
+        startgame = getRandomoption( dice , startgame);
 
     }
 }
