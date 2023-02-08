@@ -1,53 +1,57 @@
 import java.util.Random;
 
 public class SnakeLadder {
-    static int startgame = 0;
-    static  int dice = 0;
-    static Random rand = new Random();
-    static int getRandomvalue() {
+    static Random random = new Random();
+    static int getRandomValue(){
+        int randomValue = random.nextInt(6);
+        System.out.println("Player Roll the die");
+        randomValue = randomValue + 1;
+        System.out.println("dice : " +randomValue);
+        return randomValue;
+    }
 
-        System.out.println("Single player at start position "+ startgame);
-        while (startgame <= 100){
-            dice = rollDice();
-            startgame = getRandomoption(dice, startgame);
+    static int getRandomOption(int startgame, int dice) {
+        int randomOption = random.nextInt(3);
+        randomOption = randomOption + 1;
+        System.out.println("Choose option : " +randomOption);
+
+        switch(randomOption) {
+            case 0 :
+                System.out.println("no play then player stay same position");
+                break;
+            case 1 :
+                startgame =startgame + dice;
+                System.out.println("Ladder the Player moves ahead :" + startgame);
+                break;
+            case 2 :
+                if(startgame >= 0)
+                    startgame = startgame - dice;
+                System.out.println("Snake the player moves behind : " + startgame);
+                break;
+            default :
         }
-        System.out.println("Win the game position is : "+ startgame);
-        return dice;
+        System.out.println();
+        return startgame;
     }
-    public static int rollDice(){
-        Random ch = new Random();
-        int randomvalue = ch.nextInt(6) +1;
-        System.out.println("player roll the die");
-        randomvalue = randomvalue + 1;
-        System.out.println("dice ; " +randomvalue);
-        return randomvalue;
-    }
-    static int getRandomoption(int startposition,int dice) {
-        int randomoption =rand.nextInt(3);
-        randomoption = randomoption + 1;
-        System.out.println("checkoption: " +randomoption);
 
-
-        switch (randomoption){
-            case 0:
-                System.out.println("no play then  player stays in same position");
-                break;
-            case 1:
-                startgame = startgame + dice;
-                System.out.println("ladder the player moves ahead : "+startgame);
-                break;
-            case 2:
-                startgame = startgame - dice;
-                System.out.println("snake the player moves behind : " +startgame);
-                break;
-        }
-        return randomoption;
-    }
     public static void main(String[] args) {
-        System.out.println("Here to start snake and ladder program");
 
-        dice = getRandomvalue();
-        startgame = getRandomoption( dice , startgame);
+        int startgame = 0;
+        int dice =0;
+
+        System.out.println("Here the start Snake And Ladder program /n");
+        System.out.println("Singal Player at start position " +startgame);
+        while (startgame <= 100)	{
+            dice = getRandomValue();
+            startgame=getRandomOption(startgame , dice);
+        }
+        if (startgame > 100) {
+            int temp = startgame - 100;
+            startgame = startgame - temp;
+            System.out.println("win the game position is : "+startgame);
+        }
+        else
+            System.out.println("Win the game postion is : " +startgame);
 
     }
 }
