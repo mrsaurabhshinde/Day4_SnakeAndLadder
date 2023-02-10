@@ -20,7 +20,7 @@ public class SnakeLadder {
                 System.out.println("no play then player stay same position");
                 break;
             case 1 :
-                startgame =startgame + dice;
+                startgame = startgame + dice;
                 System.out.println("Ladder the Player moves ahead :" + startgame);
                 break;
             case 2 :
@@ -37,21 +37,32 @@ public class SnakeLadder {
     public static void main(String[] args) {
 
         int startgame = 0;
-        int dice =0;
+        int dice ;
+        int countDice = 0;
+        int countPosition = 0;
 
-        System.out.println("Here the start Snake And Ladder program /n");
-        System.out.println("Singal Player at start position " +startgame);
+        System.out.println("Welcome to Snake And Ladder Game \n");
+        System.out.println("Single Player at start position " +startgame);
         while (startgame <= 100)	{
             dice = getRandomValue();
+            countDice ++;
+            int t = startgame;
             startgame=getRandomOption(startgame , dice);
+            if(startgame > t)
+                countPosition ++;
         }
         if (startgame > 100) {
             int temp = startgame - 100;
             startgame = startgame - temp;
             System.out.println("win the game position is : "+startgame);
+            System.out.println("Number of count dice : "+countDice);
+            System.out.println("number of count position : "+countPosition);
         }
-        else
-            System.out.println("Win the game postion is : " +startgame);
-
+        else {
+            System.out.println("Win the game postion : " +startgame);
+            System.out.println("number of count dice : "+countDice);
+            System.out.println("number of count position : "+countPosition);
+        }
     }
+
 }
